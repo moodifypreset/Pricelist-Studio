@@ -1,0 +1,81 @@
+{
+  "name": "pricelist-studio",
+  "productName": "Price List Studio",
+  "version": "1.1.0",
+  "description": "Price List Studio by Moodifypreset · pembuat price list & katalog paket untuk fotografer dan vendor wedding",
+  "author": "Moodifypreset",
+  "license": "UNLICENSED",
+  "main": "main.js",
+  "scripts": {
+    "fonts": "node scripts/download-fonts.mjs",
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist": "electron-builder --mac --win",
+    "predist:mac": "node scripts/download-fonts.mjs",
+    "predist:win": "node scripts/download-fonts.mjs",
+    "predist": "node scripts/download-fonts.mjs"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.moodifypreset.pricelist",
+    "productName": "Price List Studio",
+    "copyright": "© Moodifypreset",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*",
+      "package.json"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "moodify",
+        "name": "Proyek Price List Studio",
+        "description": "Proyek Price List Studio",
+        "role": "Editor",
+        "mimeType": "application/x-moodify"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "dmg": {
+      "title": "Price List Studio ${version}",
+      "artifactName": "Price-List-Studio-${version}-mac.dmg"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Price List Studio",
+      "artifactName": "Price-List-Studio-${version}-Setup.exe"
+    }
+  }
+}
